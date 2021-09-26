@@ -8,35 +8,35 @@ var actualCode = '('+ function modifyDOM() {
         var companyName = document.getElementsByClassName("jobs-unified-top-card__subtitle-primary-grouping mr2 t-black")[0].children[0].textContent.trim();
         console.log(companyName);
         
-        async function () {
-            const data = JSON.stringify({
-              query: `{
-            characters(isMonster:true) {
-              name
-              episode {
-                name
-              }
-            }
-          }`,
-            });
-        
-            const response = await fetch(
-              'https://biggs.stepzen.net/scoobydoo/scoobydoo/__graphql',
-              {
-                method: 'post',
-                body: data,
-                headers: {
-                  'Content-Type': 'application/json',
-                  'Content-Length': data.length,
-                  Authorization:
-                    'Apikey DONOTSENDAPIKEYS',
+        fetch('https://novel-hyena-29.hasura.app/v1/graphql', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-hasura-admin-secret': 'ICfgxaUgD4rh0yYZyS0VWsGzVaJ7mLrrmnJWxuWpfAYdoZDSfwOM1T1gUDvBEJ6r'
+            },
+            body: JSON.stringify({
+                query: `
+                    query MyQuery($_eq: String = "") {
+                        planets(where: {name: {_eq: $_eq}}) {
+                        reviews_aggregate {
+                            aggregate {
+                            max {
+                                body
+                            }
+                            }
+                        }
+                        }
+                    }
+                `,
+                variables: {
+                eq: companyName,
                 },
-              }
-            );
-        
-            const characterData = await response.json();
+            }),
+        })
+        .then((res) => res.json())
+        .then((result) => console.log(result));
 
-        var num = data;
+        var num = Math.random()*5;
 
         var div=document.createElement("div");
 
@@ -77,8 +77,40 @@ var actualCode = '('+ function modifyDOM() {
         for(var i = 0; i < boxes.length; i++) {
             companyName = boxes[i].childNodes[0].textContent;
             console.log(companyName);
+            
+            console.log(companyName);
+            
 
-            var num = 1;
+            fetch('https://novel-hyena-29.hasura.app/v1/graphql', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-hasura-admin-secret': 'ICfgxaUgD4rh0yYZyS0VWsGzVaJ7mLrrmnJWxuWpfAYdoZDSfwOM1T1gUDvBEJ6r'
+                },
+                body: JSON.stringify({
+                    query: `
+                        query MyQuery($_eq: String = "") {
+                            planets(where: {name: {_eq: $_eq}}) {
+                            reviews_aggregate {
+                                aggregate {
+                                max {
+                                    body
+                                }
+                                }
+                            }
+                            }
+                        }
+                    `,
+                    variables: {
+                    _eq: companyName,
+                    },
+                }),
+            })
+            .then((res) => res.json())
+            .then((result) => console.log(result));
+
+            var num = Math.random()*5;
+
             var div=document.createElement("div");
             
     

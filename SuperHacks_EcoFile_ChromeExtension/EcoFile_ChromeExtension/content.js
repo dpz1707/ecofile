@@ -30,7 +30,7 @@ var actualCode = '('+ function modifyDOM() {
                 div.style.color = "red";
             }
         } else {
-            div.innerText="Susmeter Score: Not Found";
+            div.innerText="Susmeter Score: Not Found ඞ";
             div.style.color = "silver";
         }
         
@@ -39,16 +39,13 @@ var actualCode = '('+ function modifyDOM() {
     } else if (site.includes("google.com/search")) {
         console.log('Tab script:');
         var companyName;
-        
 
-        const targets = document.getElementsByClassName("nJlQNd sMzDkb")
         const boxes = document.getElementsByClassName("tJ9zfc");
-        const nexts = document.getElementsByClassName("sMzDkb");
 
         var nextDiv;
 
-        for(var i = 0; i < targets.length; i++) {
-            companyName = targets[i].textContent
+        for(var i = 0; i < boxes.length; i++) {
+            companyName = boxes[i].childNodes[0].textContent;
             console.log(companyName);
 
             var num = 1;
@@ -74,11 +71,11 @@ var actualCode = '('+ function modifyDOM() {
                     div.style.color = "red";
                 }
             } else {
-                div.innerText="Susmeter Score: Not Found";
+                div.innerText="Susmeter Score: Not Found ඞ";
                 div.style.color = "silver";
             }
             
-            nextDiv = nexts[i];
+            nextDiv = boxes[i].childNodes[1];
             boxes[i].insertBefore(div, nextDiv);
                         
         }

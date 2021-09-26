@@ -10,7 +10,7 @@ const LogoText = styled.h1`
 `;
 
 const Logo = () => {
-  return <LogoText>Melange</LogoText>;
+  return <LogoText>EcoFile</LogoText>;
 };
 
 export default Logo;
